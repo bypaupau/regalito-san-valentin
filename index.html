@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Daniel 💌</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Wallpaper -->
+<div id="wallpaper">
+    <img src="resources/wallpaper.jpg" alt="wallpaper">
+</div>
+
+<!-- Floating hearts -->
+<div class="heart-bg" id="heart-bg"></div>
+
+<!-- Overlay -->
+<div id="overlay" onclick="closeAllWindows()"></div>
+
+<!-- Desktop greeting -->
+<div id="desktop-greeting">
+    <h1></h1>
+    <p>14 · 02 · 2026</p>
+</div>
+
+<!-- ══════════════════ WIDGETS — 2×2 GRID TOP-RIGHT ══════════════════ -->
+<div id="widget-grid">
+
+    <!-- Clock widget -->
+    <div class="desktop-widget" id="widget-clock">
+        <div class="widget-titlebar">
+            <span class="widget-dot red"></span>
+            <span class="widget-dot yellow"></span>
+            <span class="widget-dot green"></span>
+            <span class="widget-name">reloj 🕐</span>
+        </div>
+        <div class="widget-clock-body">
+            <div id="live-clock">--:--</div>
+            <div id="live-ampm">--</div>
+        </div>
+    </div>
+
+    <!-- GIF widget -->
+    <div class="desktop-widget" id="widget-gif2">
+        <div class="widget-titlebar">
+            <span class="widget-dot red"></span>
+            <span class="widget-dot yellow"></span>
+            <span class="widget-dot green"></span>
+            <span class="widget-name">para ti 🌸</span>
+        </div>
+        <div class="widget-gif-body">
+            <img src="resources/bulbul.gif" alt="pikachu" class="widget-gif-img">
+            <p class="widget-gif-caption">feliz san valentín ✨</p>
+        </div>
+    </div>
+
+    <!-- Photo widget -->
+    <div class="desktop-widget" id="widget-gif3">
+        <div class="widget-titlebar">
+            <span class="widget-dot red"></span>
+            <span class="widget-dot yellow"></span>
+            <span class="widget-dot green"></span>
+            <span class="widget-name">para ti 🌸</span>
+        </div>
+        <div class="widget-gif-body">
+            <img src="resources/qiqi.jpg" alt="qiqi" class="widget-gif-img">
+            <p class="widget-gif-caption">feliz san valentín ✨</p>
+        </div>
+    </div>
+
+    <!-- Date widget -->
+    <div class="desktop-widget" id="widget-date">
+        <div class="widget-titlebar">
+            <span class="widget-dot red"></span>
+            <span class="widget-dot yellow"></span>
+            <span class="widget-dot green"></span>
+            <span class="widget-name">hoy 💛</span>
+        </div>
+        <div class="widget-date-body">
+            <div class="widget-month">Febrero</div>
+            <div class="widget-day">14</div>
+            <div class="widget-year">2026</div>
+            <div class="widget-hearts">💕</div>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- ══════════════════ ICON GRID (playlist + gift only) ══════════════════ -->
+<div id="icon-grid">
+
+    <div class="desktop-icon" onclick="openWindow('letter-window')">
+        <div class="icon-img">
+            <img src="resources/pikachu.png" alt="carta" class="icono-personalizado">
+        </div>
+        <span class="icon-label">Cartita ⋆˚࿔</span>
+    </div>
+
+    <div class="desktop-icon" onclick="openWindow('invite-window')">
+        <div class="icon-img">
+            <img src="resources/pokeball.png" alt="invitación" class="icono-personalizado">
+        </div>
+        <span class="icon-label">Invitación ♡(>ᴗ•)</span>
+    </div>
+
+    <div class="desktop-icon" onclick="openWindow('reasons-window')">
+        <div class="icon-img">
+            <img src="resources/jigglypuff.png" alt="razones" class="icono-personalizado">
+        </div>
+        <span class="icon-label">Por qué te quiero (≧◡≦)</span>
+    </div>
+
+    <div class="desktop-icon" onclick="openWindow('playlist-window')">
+        <div class="icon-img">
+            <img src="resources/blibup.png" alt="playlist" class="icono-personalizado">
+        </div>
+        <span class="icon-label">Playlist ⋆˚꩜｡</span>
+    </div>
+
+    <div class="desktop-icon" onclick="openWindow('gift-window')">
+        <div class="icon-img">
+            <img src="resources/bulbasaur.png" alt="sorpresa" class="icono-personalizado">
+        </div>
+        <span class="icon-label">Sorpresa ⋆.𐙚 ̊</span>
+    </div>
+
+</div>
+
+<!-- Running Pikachu -->
+<img id="pikachu-runner" src="resources/pika%20run.gif" alt="pikachu corriendo">
+
+<!-- ══════════════════ TASKBAR ══════════════════ -->
+<div id="taskbar">
+    <div id="taskbar-left">
+        <span class="taskbar-icon">🌸</span>
+        <span style="font-size:12px; color: var(--text); font-weight:600;">valentine.love</span>
+    </div>
+    <div id="taskbar-center">❤️</div>
+    <div id="taskbar-right">
+        <span id="notification-pill" onclick="openWindow('letter-window')">💌 1 mensaje para ti</span>
+        <span id="clock">--:-- --</span>
+    </div>
+</div>
+
+<!-- ══════════════════ NOTIFICATION TOAST ══════════════════ -->
+<div id="toast" onclick="toastClick()">
+    <div class="toast-icon">💌</div>
+    <div class="toast-content">
+        <div class="toast-app">valentine.love</div>
+        <div class="toast-title">Tienes un mensaje nuevo</div>
+        <div class="toast-msg">Espero te guste tu regalito</div>
+    </div>
+    <div class="toast-time" id="toast-time">ahora</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     WINDOWS
+     ══════════════════════════════════════════════════════════════ -->
+
+<!-- 1. Letter window -->
+<div class="window" id="letter-window">
+    <div class="window-titlebar pink">
+        <div class="window-dots">
+            <div class="dot red"></div>
+            <div class="dot yellow"></div>
+            <div class="dot green"></div>
+        </div>
+        <span class="window-title">una carta para ti. 💌</span>
+        <button class="close-btn" onclick="closeWindow('letter-window')">✕</button>
+    </div>
+
+    <div id="letter-body">
+        <div id="letter-content" class="open">
+            <div class="letter-paper">
+                <p class="letter-date">14 de Febrero, 2026</p>
+                <p class="letter-text">
+                    ¿Sabías que nos conocimos un 13 de junio de 2025? Quién diría… justamente tu número favorito.<br><br>
+
+                    Sin embargo, ese fue mi primero de muchos intentos de acercarme a ti. Recién el 15 de julio, todo un mes después, empezamos a hablar con más frecuencia gracias a un Arduino. Jamás me hubiese imaginado que aquel proyecto de electrónica, que solo me generaba dolores de cabeza y días estresantes, también me dio la oportunidad de conocer a la persona más especial que tengo en este momento.
+                    <br><br>
+                    A partir de ese día mi vida no iba a ser igual. Aunque nada cambió exactamente de repente, te convertiste en mi confidente, en mi mejor amigo, en la persona en la que más confiaba y a quien corría a contarle mis días, sin darme cuenta y poco a poco te convertiste en parte de mi día a día.
+                    <br><br>
+                    Pero algo cambió en noviembre del mismo año. Nuestras conversaciones se empezaron a hacer más profundas, comenzamos a pasar más tiempo juntos por proyectos y, de repente, ansiaba siempre poder conversar contigo. A pesar de estar en negación hasta el último momento y de haber ignorado las señales, el 4 de diciembre tuviste la valentía de invitarme a salir, y ahora sí, mi vida no iba a tener vuelta atrás.
+                    <br><br>
+                    Poco a poco, después de esa primera cita —en la cual yo seguía insegura y confundida debido a mi historia con el “amor”—, tú fuiste, de manera segura, dándome a entender con claridad que me querías, y yo ya no podía negar lo mismo de mi parte.
+                    <br><br>
+                    Desde aquel momento, me reafirmas en cada momento, a través de tus acciones, que soy especial, y me siento muy agradecida por tener la oportunidad de ser parte de tus días; de que una persona tan generosa, amable, inteligente y bondadosa —y probablemente no me alcancen los adjetivos para describirte— se haya fijado en mí y me quiera tanto.
+                    <br><br>
+                    Gracias, Daniel, por darme la oportunidad de conocerte, por darme el orgullo de poder decir que una persona tan fuera de esta galaxia me quiere. Deseo que sepas que, si me das la oportunidad —a pesar de que yo vaya a pasos de tortuga, aún tambaleando bastante, con muchos miedos e inseguridades—, quiero seguir construyendo una vida en la que tú seas parte.
+                    <br><br>
+                    Te quiero mucho.
+                </p>
+                <p class="letter-sign">— Paula</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 2. Invitation window -->
+<div class="window" id="invite-window">
+    <div class="window-titlebar blue">
+        <div class="window-dots">
+            <div class="dot red"></div>
+            <div class="dot yellow"></div>
+            <div class="dot green"></div>
+        </div>
+        <span class="window-title">invitación. 🌹</span>
+        <button class="close-btn" onclick="closeWindow('invite-window')">✕</button>
+    </div>
+
+    <div id="invite-body">
+        <div class="invite-deco">
+            <img src="resources/letter.png">
+        </div>
+        <h2 class="invite-title">Tienes una invitación especial</h2>
+        <p class="invite-subtitle">de parte de Paula</p>
+
+        <div class="invite-card">
+            <div class="invite-detail">
+                <span class="emoji">
+                    <img src="resources/pin_icon.png">
+                </span>
+                <div><strong>Dónde:</strong> San Marino</div>
+            </div>
+            <div class="invite-detail">
+                <span class="emoji">
+                    <img src="resources/calendar_icon.png">
+                </span>
+                <div><strong>Cuándo:</strong> Lunes, 16 de Febrero del 2026<br>o Martes, 17 de Febrero. Tú eliges</div>
+            </div>
+            <div class="invite-detail">
+                <span class="emoji">
+                    <img src="resources/clock_icon.png">
+                </span>
+                <div><strong>A las:</strong> 1:30 PM</div>
+            </div>
+            <div class="invite-detail">
+                <span class="emoji">
+                    <img src="resources/to_icon.png">
+                </span>
+                <div><strong>Para:</strong> Daniel</div>
+            </div>
+        </div>
+
+        <p class="invite-note">Estás cordialmente invitado 𐔌՞ ܸ.ˬ.ܸ՞ 𐦯 </p>
+
+        <div id="rsvp-area">
+            <button class="rsvp-btn" onclick="confirmRSVP()">¡Ahí estaré!</button>
+        </div>
+        <div class="rsvp-response" id="rsvp-response">
+            <p class="rsvp-response-text">¡Yay! </p>
+            <p class="rsvp-response-sub">el lunes a la 1:30 PM, te espero.</p>
+        </div>
+    </div>
+</div>
+
+<!-- 3. Reasons window -->
+<div class="window" id="reasons-window">
+    <div class="window-titlebar pink">
+        <div class="window-dots">
+            <div class="dot red"></div>
+            <div class="dot yellow"></div>
+            <div class="dot green"></div>
+        </div>
+        <span class="window-title">por qué te quiero. 🩷</span>
+        <button class="close-btn" onclick="closeWindow('reasons-window')">✕</button>
+    </div>
+
+    <div id="reasons-body">
+        <p class="reasons-title">14 razones por las que te quiero</p>
+        <div id="reasons-list"></div>
+    </div>
+</div>
+
+<!-- 4. Playlist window -->
+<div class="window" id="playlist-window">
+    <div class="window-titlebar pink">
+        <div class="window-dots">
+            <div class="dot red"></div>
+            <div class="dot yellow"></div>
+            <div class="dot green"></div>
+        </div>
+        <span class="window-title">para ti 🎶</span>
+        <button class="close-btn" onclick="closeWindow('playlist-window')">✕</button>
+    </div>
+
+    <div id="playlist-body">
+        <div class="playlist-header">
+            <div class="playlist-cover">
+                <img src="resources/cover.gif" alt="pika cover">
+            </div>
+            <div class="playlist-info">
+                <h3>para Daniel, con mucho cariño</h3>
+                <p>by Paula · 3 canciones</p>
+            </div>
+        </div>
+        <div id="song-list"></div>
+        <p class="playlist-note">cada canción es para ti (⌒▽⌒)☆</p>
+    </div>
+</div>
+
+<!-- 5. Gift window — Resident Evil Requiem (Steam) -->
+<div class="window" id="gift-window">
+    <div class="window-titlebar re-titlebar">
+        <div class="window-dots">
+            <div class="dot red"></div>
+            <div class="dot yellow"></div>
+            <div class="dot green"></div>
+        </div>
+        <span class="window-title re-title">✦ una sorpresita para ti ✦</span>
+        <button class="close-btn re-close" onclick="closeWindow('gift-window')">✕</button>
+    </div>
+
+    <div id="gift-body">
+        <div id="gift-box-area" onclick="openGift()">
+            <span class="gift-box">
+                <img src="resources/gift.png" alt="gift">
+            </span>
+            <p class="gift-hint">haz click para abrir</p>
+        </div>
+        <div id="gift-message">
+            <div class="re-frame">
+                <div class="re-top-deco">⚜️ &nbsp;&nbsp; sorpresa &nbsp;&nbsp; ⚜️</div>
+                <div class="re-img-wrap">
+                    <img src="resources/resident_evil.png" alt="Resident Evil Requiem" class="re-cover">
+                    <div class="re-img-overlay"></div>
+                </div>
+                <div class="re-msg-block">
+                    <p class="re-steam-tag">🎮 &nbsp;revisa tu cuenta de Steam</p>
+                    <p class="re-sub">de corazon espero que te haga muy feliz</p>
+                </div>
+                <div class="re-bottom-deco">✦ &nbsp; feliz san valentín, Daniel &nbsp; ✦</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
